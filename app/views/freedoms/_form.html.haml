@@ -1,0 +1,16 @@
+= form_for @freedom do |f|
+  - if @freedom.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@freedom.errors.count, "error")} prohibited this freedom from being saved:"
+      %ul
+        - @freedom.errors.full_messages.each do |message|
+          %li= message
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :message
+    = f.text_field :message
+  .actions
+    = f.submit 'Save'

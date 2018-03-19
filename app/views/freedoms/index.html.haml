@@ -1,0 +1,23 @@
+%h1 Listing freedoms
+
+%table
+  %thead
+    %tr
+      %th Name
+      %th Message
+      %th
+      %th
+      %th
+
+  %tbody
+    - @freedoms.each do |freedom|
+      %tr
+        %td= freedom.name
+        %td= freedom.message
+        %td= link_to 'Show', freedom
+        %td= link_to 'Edit', edit_freedom_path(freedom)
+        %td= link_to 'Destroy', freedom, method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Freedom', new_freedom_path

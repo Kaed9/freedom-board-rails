@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @freedom.name
+%p
+  %b Message:
+  = @freedom.message
+
+= link_to 'Edit', edit_freedom_path(@freedom)
+\|
+= link_to 'Back', freedoms_path
