@@ -5,6 +5,7 @@
     %tr
       %th Name
       %th Message
+      %th Date Created
       %th
       %th
       %th
@@ -14,6 +15,7 @@
       %tr
         %td= freedom.name
         %td= freedom.message
+        %td= freedom.created_at
         %td= link_to 'Show', freedom
         %td= link_to 'Edit', edit_freedom_path(freedom)
         %td= link_to 'Destroy', freedom, method: :delete, data: { confirm: 'Are you sure?' }
