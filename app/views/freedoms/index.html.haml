@@ -1,25 +1,102 @@
-%h1 Listing freedoms
+:css
+  html {
+    text-align: center;
+    font-family: Verdana, Times New Roman;
+    height: 100%;
+    width: 100%;
+    min-width: 1024px;	
+    background: url('/assets/4_1_1.jpg') no-repeat center center fixed;
+    background size: cover;
+    color: white;
+  }
+  
+  #posts {
+    margin: 0px auto;
+    width: 800px;
+    height: 450px;
+    overflow-y: scroll;
+    padding: 0px 10px 0px 0px;
+  }
+  
+  #posts_content_head, #posts_content_head_1 {
+    font-weight: bold;
+    color: rgb(255, 255, 0);
+    font-size: 24px;
+  }
+  
+  #posts_content_body, #posts_content_body_1 {
+    color: white;
+    font-size: 20px;
+  }
+  
+  #posts_content_time, #posts_content_time_1 {
+    color: #18e7c8;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  #posts_content_head_1, #posts_content_body_1, #posts_content_time {
+    text-align: right;
+  }
+  
+  #posts_content_time_1, #posts_content_head, #posts_content_body {
+    text-align: left;
+  }
+  
+  .divider {
+    border: 1px solid white;
+  }
+  
+  #bloack{
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0px 200px;
+  }
+  
+  .new_post {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 3px 5px;
+    margin: 5px;
+    border: 1px solid black;
+  }
+  
+  .new_post:hover {
+    background-color: rgb(115, 186, 230);
+    color: white;
+  }
+  
+  .new_post:active {
+    background-color: rgb(0, 0, 250);
+    color: white;
+  }
 
-%table
-  %thead
-    %tr
-      %th Name
-      %th Message
-      %th Date Created
-      %th
-      %th
-      %th
+%div#bloack
+  %br
+  
+  %h1 Welcome to the Freedom Board
+  %h2 Share your thoughts here!
 
-  %tbody
-    - @freedoms.each do |freedom|
-      %tr
-        %td= freedom.name
-        %td= freedom.message
-        %td= freedom.created_at
-        %td= link_to 'Show', freedom
-        %td= link_to 'Edit', edit_freedom_path(freedom)
-        %td= link_to 'Destroy', freedom, method: :delete, data: { confirm: 'Are you sure?' }
+  %br
 
-%br
+  = link_to 'NEW POST', new_freedom_path, class: :new_post
+  = link_to 'SEARCH', new_freedom_path, class: :new_post
 
-= link_to 'New Freedom', new_freedom_path
+  %br
+  %br
+
+  %div#posts
+    - count = 0
+    - @freedoms.sort_by {|k, v|}.reverse.each do |freedom|
+      - if count % 2 == 0
+        %p#posts_content_head= freedom.name
+        %p#posts_content_body= freedom.message
+        %p#posts_content_time= "Posted on #{freedom.created_at.strftime("%B %d, %Y")} at #{freedom.created_at.strftime("%I:%M %p")}"
+      - else
+        %p#posts_content_head_1= freedom.name
+        %p#posts_content_body_1= freedom.message
+        %p#posts_content_time_1= "Posted on #{freedom.created_at.strftime("%B %d, %Y")} at #{freedom.created_at.strftime("%I:%M %p")}"
+      - count += 1
+      %div.divider
+	 
+  %br

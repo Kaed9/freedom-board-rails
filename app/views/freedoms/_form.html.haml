@@ -1,3 +1,38 @@
+:css
+  #post_it {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 4px 5px 3px 5px;
+    margin: 15px;
+    border: 1px solid black;
+    font-size: 18px;
+  }
+  
+  #back_button {
+    text-decoration: none;
+    background-color: white;
+    color: black;
+    padding: 3px 7px 4px 7px;
+    margin: 15px;
+    border: 1px solid black;
+    font-size: 18px;
+  }
+  
+  #post_it:hover, #back_button:hover {
+    background-color: rgb(115, 186, 230);
+    color: white;
+  }
+  
+  #post_it:active, #back_button:active {
+    background-color: rgb(0, 0, 250);
+    color: white;
+  }
+  
+  .field {
+    margin: 20px;
+  }
+
 = form_for @freedom do |f|
   - if @freedom.errors.any?
     #error_explanation
@@ -7,10 +42,9 @@
           %li= message
 
   .field
-    = f.label :name
-    = f.text_field :name
+    = f.text_area :message, autocomplete: "off", cols: "55", placeholder: "Type your message here...", rows: "5", style: "resize: none; font-size: 18px;", value: ""
   .field
-    = f.label :message
-    = f.text_field :message
+    = f.text_field :name, autocomplete: "off", placeholder: "Anonymous", style: "font-size: 20px;"
   .actions
-    = f.submit 'Save'
+    = f.submit "POST IT", id: "post_it"
+    = link_to 'BACK', freedoms_path, id: :back_button

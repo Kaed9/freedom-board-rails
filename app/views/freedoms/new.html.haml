@@ -1,5 +1,27 @@
-%h1 New freedom
+:css
+  html {
+    text-align: center;
+    font-family: Verdana, Times New Roman;
+    height: 100%;
+    width: 100%;
+    min-width: 1024px;	
+    background: url('/assets/4_1_1.jpg') no-repeat center center fixed;
+    background size: cover;
+    color: white;
+  }
+  
+  #bloack{
+    background-color: rgba(0, 0, 0, 0.3);
+    margin: 0px 200px;
+    height: 450px;
+  }
 
-= render 'form'
+%div#bloack
+  %br
+  %h1 What would your new post say?
+  %h2 Fill in the details below!
+  %br
 
-= link_to 'Back', freedoms_path
+  = render 'form'
+
+  %br

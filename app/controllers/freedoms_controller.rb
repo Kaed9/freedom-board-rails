@@ -28,8 +28,8 @@ class FreedomsController < ApplicationController
 
     respond_to do |format|
       if @freedom.save
-        format.html { redirect_to @freedom, notice: 'Freedom was successfully created.' }
-        format.json { render :show, status: :created, location: @freedom }
+        format.html { redirect_to @freedom }
+        format.json { render :action => :index, status: :created, location: @freedom }
       else
         format.html { render :new }
         format.json { render json: @freedom.errors, status: :unprocessable_entity }
