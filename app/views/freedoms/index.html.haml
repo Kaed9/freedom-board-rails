@@ -88,6 +88,9 @@
   %div#posts
     - count = 0
     - @freedoms.sort_by {|k, v|}.reverse.each do |freedom|
+      - if count == 0
+        %div.divider
+
       - if count % 2 == 0
         %p#posts_content_head= freedom.name
         %p#posts_content_body= freedom.message

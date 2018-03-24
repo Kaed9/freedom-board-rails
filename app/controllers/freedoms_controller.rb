@@ -25,10 +25,12 @@ class FreedomsController < ApplicationController
   # POST /freedoms.json
   def create
     @freedom = Freedom.new(freedom_params)
+	
+	if @freedom.name == "" then @freedom.name = "Anonymous" end
 
     respond_to do |format|
       if @freedom.save
-        format.html { redirect_to @freedom }
+        format.html { redirect_to @freedom, notice: 'Your post was successfully created' }
         format.json { render :action => :index, status: :created, location: @freedom }
       else
         format.html { render :new }
@@ -56,7 +58,7 @@ class FreedomsController < ApplicationController
   def destroy
     @freedom.destroy
     respond_to do |format|
-      format.html { redirect_to freedoms_url, notice: 'Freedom was successfully destroyed.' }
+      format.html { redirect_to freedoms_url, notice: 'Freedom was successfully destroyed' }
       format.json { head :no_content }
     end
   end
